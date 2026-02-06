@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Koustav Dhar - Architect, BIM Coordinator, and Digital Delivery Specialist with 7+ years of international experience on complex global projects.">
+    <title>Koustav Dhar · Architect · BIM Coordinator</title>
+    
+    <!-- Google Fonts: Crimson Pro (architectural serif) + Inter (refined sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           DESIGN SYSTEM & CSS VARIABLES
+           ============================================ */
+        :root {
+            /* Color Palette: Restrained, architectural */
+            --color-bg: #FAFAFA;
+            --color-surface: #FFFFFF;
+            --color-text-primary: #1A1A1A;
+            --color-text-secondary: #525252;
+            --color-text-tertiary: #737373;
+            --color-accent: #8B7355; /* Muted bronze/earth tone */
+            --color-border: #E5E5E5;
+            --color-border-dark: #D4D4D4;
+            
+            /* Typography */
+            --font-serif: 'Crimson Pro', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            /* Spacing System */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2.5rem;
+            --space-xl: 4rem;
+            --space-2xl: 6rem;
+            --space-3xl: 8rem;
+            
+            /* Layout */
+            --max-width: 1200px;
+            --max-width-narrow: 800px;
+            --grid-gap: 2rem;
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 300ms ease;
+            --transition-slow: 500ms ease;
+        }
+        
+        /* ============================================
+           RESET & BASE STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background-color: var(--color-bg);
+            font-weight: 400;
+        }
+        
+        /* ============================================
+           TYPOGRAPHY SYSTEM
+           ============================================ */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.2;
+            margin: 0;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            letter-spacing: -0.01em;
+        }
+        
+        h3 {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+        }
+        
+        h4 {
+            font-size: 1.125rem;
+            font-family: var(--font-sans);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.875rem;
+        }
+        
+        p {
+            margin: 0;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-base);
+        }
+        
+        a:hover {
+            color: var(--color-accent);
+        }
+        
+        /* ============================================
+           LAYOUT COMPONENTS
+           ============================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        
+        .container--narrow {
+            max-width: var(--max-width-narrow);
+        }
+        
+        section {
+            padding: var(--space-3xl) 0;
+            position: relative;
+        }
+        
+        /* Subtle section divider */
+        section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: var(--color-border);
+        }
+        
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: var(--space-2xl) 0;
+            position: relative;
+        }
+        
+        .hero__content {
+            opacity: 0;
+            animation: fadeInUp 1s var(--transition-slow) forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero__name {
+            margin-bottom: var(--space-sm);
+            font-weight: 300;
+        }
+        
+        .hero__title {
+            font-family: var(--font-sans);
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 300;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-lg);
+            letter-spacing: 0.02em;
+        }
+        
+        .hero__tagline {
+            font-family: var(--font-serif);
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            line-height: 1.5;
+            color: var(--color-text-secondary);
+            max-width: 800px;
+            margin-bottom: var(--space-xl);
+            font-weight: 300;
+        }
+        
+        .hero__scroll {
+            position: absolute;
+            bottom: var(--space-lg);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--color-text-tertiary);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1s 1.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .hero__scroll-line {
+            width: 1px;
+            height: 40px;
+            background: var(--color-border-dark);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+        
+        @keyframes scrollLine {
+            0%, 100% { transform: scaleY(0.5); opacity: 0.3; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+        
+        /* ============================================
+           PROFILE SECTION
+           ============================================ */
+        .profile__grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--grid-gap);
+            align-items: start;
+        }
+        
+        .profile__label {
+            color: var(--color-text-tertiary);
+            position: sticky;
+            top: var(--space-lg);
+        }
+        
+        .profile__content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+        }
+        
+        .profile__content p + p {
+            margin-top: var(--space-md);
+        }
+        
+        /* ============================================
+           EXPERTISE SECTION
+           ============================================ */
+        .expertise__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .expertise__item {
+            padding: var(--space-md) 0;
+            border-top: 1px solid var(--color-border);
+        }
+        
+        .expertise__item h4 {
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .expertise__item p {
+            font-size: 0.9375rem;
+            color: var(--color-text-tertiary);
+            line-height: 1.6;
+        }
+        
+        /* ============================================
+           PROJECTS SECTION
+           ============================================ */
+        .section-header {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .section-header h2 {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .section-header p {
+            color: var(--color-text-secondary);
+            font-size: 1.0625rem;
+        }
+        
+        .projects__list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2xl);
+        }
+        
+        .project {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: var(--space-lg);
+            padding: var(--space-lg) 0;
+            border-top: 1px solid var(--color-border);
+            transition: padding var(--transition-base);
+        }
+        
+        .project:hover {
+            padding-left: var(--space-sm);
+        }
+        
+        .project__meta {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+        
+        .project__type {
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+        
+        .project__location {
+            font-size: 0.875rem;
+            color: var(--color-text-tertiary);
+        }
+        
+        .project__content h3 {
+            margin-bottom: var(--space-sm);
+            font-weight: 400;
+        }
+        
+        .project__role {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.6;
+        }
+        
+        .project__impact {
+            font-size: 0.875rem;
+            color: var(--color-text-tertiary);
+            line-height: 1.7;
+        }
+        
+        .project__impact ul {
+            list-style: none;
+            margin-top: var(--space-sm);
+        }
+        
+        .project__impact li {
+            padding-left: 1.25rem;
+            position: relative;
+            margin-top: var(--space-xs);
+        }
+        
+        .project__impact li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+        
+        /* ============================================
+           TOOLS SECTION
+           ============================================ */
+        .tools__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .tools__category {
+            padding: var(--space-md);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            transition: border-color var(--transition-base);
+        }
+        
+        .tools__category:hover {
+            border-color: var(--color-border-dark);
+        }
+        
+        .tools__category h4 {
+            margin-bottom: var(--space-md);
+            color: var(--color-text-primary);
+        }
+        
+        .tools__list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+        }
+        
+        .tools__item {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            padding: 0.375rem 0.75rem;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            white-space: nowrap;
+        }
+        
+        /* ============================================
+           FOCUS SECTION
+           ============================================ */
+        .focus__content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .focus__list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+        
+        .focus__item {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--color-text-secondary);
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+        }
+        
+        .contact__content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact__content h2 {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact__links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+        
+        .contact__link {
+            font-size: 1.125rem;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid transparent;
+            transition: border-color var(--transition-base);
+        }
+        
+        .contact__link:hover {
+            border-bottom-color: var(--color-accent);
+        }
+        
+        .contact__cta {
+            margin-top: var(--space-xl);
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+        
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            padding: var(--space-xl) 0 var(--space-lg);
+            text-align: center;
+            color: var(--color-text-tertiary);
+            font-size: 0.875rem;
+        }
+        
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 768px) {
+            :root {
+                --space-xl: 3rem;
+                --space-2xl: 4rem;
+                --space-3xl: 5rem;
+            }
+            
+            section {
+                padding: var(--space-2xl) 0;
+            }
+            
+            .hero {
+                min-height: 90vh;
+            }
+            
+            .profile__grid,
+            .project {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+            
+            .profile__label {
+                position: static;
+            }
+            
+            .project:hover {
+                padding-left: 0;
+            }
+            
+            .hero__scroll {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 var(--space-md);
+            }
+            
+            .expertise__grid,
+            .tools__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Subtle fade-in on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s var(--transition-slow), 
+                        transform 0.8s var(--transition-slow);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__content">
+                <h1 class="hero__name">Koustav Dhar</h1>
+                <p class="hero__title">Architect · BIM Coordinator · Digital Delivery</p>
+                <p class="hero__tagline">
+                    Delivering coordinated, data-driven architecture for complex global projects through rigorous BIM methodologies and digital construction workflows.
+                </p>
+            </div>
+            <div class="hero__scroll">
+                <span>Scroll</span>
+                <div class="hero__scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PROFILE SECTION
+         ============================================ -->
+    <section id="profile">
+        <div class="container">
+            <div class="profile__grid">
+                <div class="profile__label">
+                    <h4>Profile</h4>
+                </div>
+                <div class="profile__content">
+                    <p>
+                        With over seven years of international experience, I lead BIM coordination and digital delivery on large-scale institutional, commercial, and infrastructure projects across the Middle East, Asia-Pacific, Europe, and North America.
+                    </p>
+                    <p>
+                        My practice centers on ISO 19650-compliant workflows, managing Common Data Environments, and establishing quality frameworks that ensure model integrity from design development through construction and handover. I coordinate across architectural, structural, and MEP disciplines to resolve complex spatial conflicts, maintain constructability, and deliver accurate asset information.
+                    </p>
+                    <p>
+                        This work requires precision in both technical execution and collaboration—authoring BIM Execution Plans, conducting rigorous QA/QC audits, and implementing automation that improves efficiency without compromising quality. The result is coordinated, data-rich models that support informed decision-making throughout the project lifecycle.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CORE EXPERTISE SECTION
+         ============================================ -->
+    <section id="expertise" class="fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2>Core Expertise</h2>
+            </div>
+            <div class="expertise__grid">
+                <div class="expertise__item">
+                    <h4>ISO 19650 BIM Delivery & CDE Management</h4>
+                    <p>Establishing compliant workflows on Autodesk Construction Cloud and BIM 360 with structured permissions and review protocols.</p>
+                </div>
+                <div class="expertise__item">
+                    <h4>BIM Execution Planning</h4>
+                    <p>Authoring comprehensive BEPs, MIDPs, LOIN specifications, and Model Development Standards that align project teams.</p>
+                </div>
+                <div class="expertise__item">
+                    <h4>Model QA/QC & Auditing</h4>
+                    <p>Conducting quality checks using Solibri and Autodesk Model Checker to ensure LOD 300/400 compliance and model accuracy.</p>
+                </div>
+                <div class="expertise__item">
+                    <h4>Clash Detection & Resolution</h4>
+                    <p>Leading coordination using Navisworks and Revizto to identify and resolve interdisciplinary conflicts before construction.</p>
+                </div>
+                <div class="expertise__item">
+                    <h4>Complex Architecture & Interiors</h4>
+                    <p>Modeling and coordinating intricate architectural elements, high-end interior fit-outs, and heritage-sensitive interventions.</p>
+                </div>
+                <div class="expertise__item">
+                    <h4>COBie / Uniclass / AIM Handover</h4>
+                    <p>Structuring asset information for digital handover and facility management integration.</p>
+                </div>
+                <div class="expertise__item">
+                    <h4>4D / 5D BIM & Quantity Take-Off</h4>
+                    <p>Linking models to schedules for construction simulation and generating accurate quantity outputs for cost estimation.</p>
+                </div>
+                <div class="expertise__item">
+                    <h4>Dynamo Automation & Digital Innovation</h4>
+                    <p>Developing scripts for data extraction, validation, and workflow optimization, alongside exploring XR and digital twin technologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SELECTED PROJECT EXPERIENCE SECTION
+         ============================================ -->
+    <section id="projects" class="fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2>Selected Project Experience</h2>
+                <p>Representative work demonstrating coordination leadership on complex, multi-disciplinary projects.</p>
+            </div>
+            <div class="projects__list">
+                
+                <!-- Project: Saudi Aramco Dhahran Corporate Academy -->
+                <article class="project">
+                    <div class="project__meta">
+                        <span class="project__type">Institutional</span>
+                        <span class="project__location">Saudi Arabia</span>
+                    </div>
+                    <div class="project__content">
+                        <h3>Saudi Aramco Dhahran Corporate Academy</h3>
+                        <p class="project__role">
+                            BIM Coordinator managing ISO 19650 compliant delivery for architecture, structure, and MEP disciplines. Established CDE workflows on Autodesk Construction Cloud and authored BEP, MIDP, and LOIN documentation.
+                        </p>
+                        <div class="project__impact">
+                            <ul>
+                                <li>Achieved 95% clash resolution rate through Navisworks, Revizto, and Solibri coordination</li>
+                                <li>Delivered LOD 400 models with COBie/Uniclass structured asset information</li>
+                                <li>Implemented Power BI dashboards for real-time model health tracking</li>
+                                <li>Conducted team training on Autodesk Tandem and XR collaboration tools</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project: NEOM Trojena -->
+                <article class="project">
+                    <div class="project__meta">
+                        <span class="project__type">Mixed-Use / Tourism</span>
+                        <span class="project__location">Saudi Arabia</span>
+                    </div>
+                    <div class="project__content">
+                        <h3>NEOM Trojena Mountain Resort</h3>
+                        <p class="project__role">
+                            Architect leading BIM modeling and coordination for recreational facilities within Saudi Arabia's visionary NEOM development. Managed interdisciplinary workflows and design iteration.
+                        </p>
+                        <div class="project__impact">
+                            <ul>
+                                <li>Developed parametric Revit families reducing modeling time by 40%</li>
+                                <li>Coordinated complex site conditions across architecture, structure, and MEP</li>
+                                <li>Reduced RFIs by 25% through proactive clash detection and design validation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project: NEOM Sindalah -->
+                <article class="project">
+                    <div class="project__meta">
+                        <span class="project__type">Resort / Island Development</span>
+                        <span class="project__location">Saudi Arabia</span>
+                    </div>
+                    <div class="project__content">
+                        <h3>NEOM Sindalah Island Resort</h3>
+                        <p class="project__role">
+                            Coordinated BIM delivery across six resort clusters including ultra-luxury accommodations, yacht club, and beach facilities. Managed villa typologies and modular construction technology integration.
+                        </p>
+                        <div class="project__impact">
+                            <ul>
+                                <li>Coordinated stacking POD construction sequences in 3D/4D environments</li>
+                                <li>Delivered comprehensive SD-stage documentation across multiple building types</li>
+                                <li>Ensured design consistency across 1-bedroom, 2-bedroom, and 4-bedroom villa units</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project: Dubai International Airport -->
+                <article class="project">
+                    <div class="project__meta">
+                        <span class="project__type">Aviation Infrastructure</span>
+                        <span class="project__location">Dubai, UAE</span>
+                    </div>
+                    <div class="project__content">
+                        <h3>Dubai International Airport Terminal Expansion</h3>
+                        <p class="project__role">
+                            Senior Architect producing clash-free coordinated models for Terminal 3 expansion, including multi-level underground structures and concourse facilities.
+                        </p>
+                        <div class="project__impact">
+                            <ul>
+                                <li>Generated comprehensive quantity take-offs for construction procurement</li>
+                                <li>Maintained stringent QA/QC standards across terminal, concourse, and parking structures</li>
+                                <li>Developed as-built BIM models for facility handover</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project: Diriyah Square -->
+                <article class="project">
+                    <div class="project__meta">
+                        <span class="project__type">Cultural Heritage / Mixed-Use</span>
+                        <span class="project__location">Riyadh, Saudi Arabia</span>
+                    </div>
+                    <div class="project__content">
+                        <h3>Diriyah Square Lifestyle Retail Hub</h3>
+                        <p class="project__role">
+                            Junior Architect coordinating retail, hospitality, and cultural components within heritage district. Applied traditional Najdi design principles in contemporary BIM workflows.
+                        </p>
+                        <div class="project__impact">
+                            <ul>
+                                <li>Conducted Model Performance Analysis to ensure file health and compliance</li>
+                                <li>Coordinated MEP services including drainage, HVAC, and ceiling integration</li>
+                                <li>Resolved design conflicts between modern systems and heritage aesthetics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project: 41 Tower Hill -->
+                <article class="project">
+                    <div class="project__meta">
+                        <span class="project__type">Commercial Refurbishment</span>
+                        <span class="project__location">London, UK</span>
+                    </div>
+                    <div class="project__content">
+                        <h3>41 Tower Hill Office Refurbishment</h3>
+                        <p class="project__role">
+                            Architect managing BIM coordination for full building refurbishment including Cat-A and Cat-B fit-out, roof extension, and ground floor retail adjacent to Tower of London.
+                        </p>
+                        <div class="project__impact">
+                            <ul>
+                                <li>Coordinated federated architecture-structure models</li>
+                                <li>Developed detailed interior architecture material diagrams and finish schedules</li>
+                                <li>Conducted pre-planning studies for historic building renovation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project: Henkel Technology Center -->
+                <article class="project">
+                    <div class="project__meta">
+                        <span class="project__type">Research & Development</span>
+                        <span class="project__location">New Jersey, USA</span>
+                    </div>
+                    <div class="project__content">
+                        <h3>Henkel Technology Center</h3>
+                        <p class="project__role">
+                            Architect coordinating renovation and modernization of 70,000 sq.ft. R&D facility with specialized laboratory and interactive technology showcase spaces.
+                        </p>
+                        <div class="project__impact">
+                            <ul>
+                                <li>Coordinated multi-building layouts across two facilities</li>
+                                <li>Collaborated with architect-engineering teams on specialized function integration</li>
+                                <li>Generated comprehensive construction documentation for renovation scope</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project: The Yokohama Front Tower -->
+                <article class="project">
+                    <div class="project__meta">
+                        <span class="project__type">Residential High-Rise</span>
+                        <span class="project__location">Yokohama, Japan</span>
+                    </div>
+                    <div class="project__content">
+                        <h3>The Yokohama Front Tower</h3>
+                        <p class="project__role">
+                            Senior Architect producing coordinated models for 43-story residential tower with 459 units, integrated retail, and leisure facilities.
+                        </p>
+                        <div class="project__impact">
+                            <ul>
+                                <li>Managed BIM 360 cloud collaboration and change control workflows</li>
+                                <li>Coordinated architecture, structure, and MEP through Navisworks clash detection</li>
+                                <li>Implemented RFI control and issue management protocols</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project: IIT Bhilai -->
+                <article class="project">
+                    <div class="project__meta">
+                        <span class="project__type">Institutional Campus</span>
+                        <span class="project__location">Chhattisgarh, India</span>
+                    </div>
+                    <div class="project__content">
+                        <h3>Indian Institute of Technology, Bhilai</h3>
+                        <p class="project__role">
+                            Senior Architect coordinating Phase-I campus development with 113,000 sq.m. of academic, residential, and research facilities.
+                        </p>
+                        <div class="project__impact">
+                            <ul>
+                                <li>Produced coordinated architectural and structural models</li>
+                                <li>Generated 4D construction simulation integrated with project Gantt charts</li>
+                                <li>Delivered SD-stage drawing sets for large-scale institutional development</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         DIGITAL DELIVERY & TOOLS SECTION
+         ============================================ -->
+    <section id="tools" class="fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2>Digital Delivery & Tools</h2>
+            </div>
+            <div class="tools__grid">
+                
+                <div class="tools__category">
+                    <h4>BIM Authoring & Coordination</h4>
+                    <div class="tools__list">
+                        <span class="tools__item">Revit</span>
+                        <span class="tools__item">Navisworks</span>
+                        <span class="tools__item">AutoCAD</span>
+                        <span class="tools__item">SketchUp</span>
+                    </div>
+                </div>
+
+                <div class="tools__category">
+                    <h4>Collaboration Platforms</h4>
+                    <div class="tools__list">
+                        <span class="tools__item">Autodesk Construction Cloud</span>
+                        <span class="tools__item">BIM 360</span>
+                        <span class="tools__item">Revizto</span>
+                        <span class="tools__item">Bluebeam</span>
+                    </div>
+                </div>
+
+                <div class="tools__category">
+                    <h4>Quality Assurance</h4>
+                    <div class="tools__list">
+                        <span class="tools__item">Solibri</span>
+                        <span class="tools__item">Autodesk Model Checker</span>
+                    </div>
+                </div>
+
+                <div class="tools__category">
+                    <h4>Automation & Analytics</h4>
+                    <div class="tools__list">
+                        <span class="tools__item">Dynamo</span>
+                        <span class="tools__item">Python</span>
+                        <span class="tools__item">Power BI</span>
+                        <span class="tools__item">Excel</span>
+                    </div>
+                </div>
+
+                <div class="tools__category">
+                    <h4>Visualization</h4>
+                    <div class="tools__list">
+                        <span class="tools__item">Enscape</span>
+                        <span class="tools__item">Lumion</span>
+                        <span class="tools__item">Twinmotion</span>
+                    </div>
+                </div>
+
+                <div class="tools__category">
+                    <h4>Emerging Technologies</h4>
+                    <div class="tools__list">
+                        <span class="tools__item">Autodesk Tandem</span>
+                        <span class="tools__item">AR / VR / XR</span>
+                        <span class="tools__item">COBie</span>
+                        <span class="tools__item">Uniclass</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CAREER FOCUS SECTION
+         ============================================ -->
+    <section id="focus" class="fade-in">
+        <div class="container">
+            <div class="focus__content">
+                <div class="section-header">
+                    <h2>Career Focus</h2>
+                </div>
+                <div class="focus__list">
+                    <div class="focus__item">BIM Coordinator</div>
+                    <div class="focus__item">BIM Architect</div>
+                    <div class="focus__item">Digital Delivery Specialist</div>
+                </div>
+                <p style="margin-top: var(--space-xl); color: var(--color-text-secondary); line-height: 1.8;">
+                    Seeking roles on large-scale, international, multi-disciplinary projects where rigorous coordination, digital innovation, and quality-driven delivery define success.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT SECTION
+         ============================================ -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact__content">
+                <h2>Contact</h2>
+                <div class="contact__links">
+                    <a href="mailto:dharkoustav95@gmail.com" class="contact__link">dharkoustav95@gmail.com</a>
+                    <a href="https://linkedin.com/in/koustav-dhar-585543154" target="_blank" rel="noopener noreferrer" class="contact__link">LinkedIn Profile</a>
+                </div>
+                <p class="contact__cta">
+                    Open to discussing BIM coordination roles, digital delivery positions, and collaborative opportunities on complex architectural projects worldwide.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Koustav Dhar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT - Scroll Animations
+         ============================================ -->
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scroll for internal links (if any were added)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
